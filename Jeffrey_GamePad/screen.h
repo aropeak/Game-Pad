@@ -16,18 +16,19 @@ Metro change = Metro(2000); // A prototype for a Metro timer
 boolean blackWhite = false;
 
 
+//initialize the screen variables
 void initScreen( ) {
-  tft.begin();                            // Connect to LCD Screen
-  tft.setRotation(3);                   // Rotate Screen 90 Degrees
+  tft.begin();                           // Connect to LCD Screen
+  tft.setRotation(3);                    // Rotate Screen 90 Degrees
 
-  tft.setFrameBuffer(screenBuffer);   // Initialize Frame Buffer
-  tft.useFrameBuffer(1);                // Use Frame Buffer
+  tft.setFrameBuffer(screenBuffer);      // Initialize Frame Buffer
+  tft.useFrameBuffer(1);                 // Use Frame Buffer
 
-  tft.fillScreen(ILI9341_BLACK);      // Clear Screen
+  tft.fillScreen(ILI9341_BLACK);         // Clear Screen
 }
 
 
-
+//tests to make sure that the screen is working
 void screenTest(Metro = change) {
   if (change.check()) {
     blackWhite = !blackWhite;
@@ -35,7 +36,7 @@ void screenTest(Metro = change) {
   if (blackWhite == false) {
     tft.fillScreen(ILI9341_BLACK);
     tft.updateScreen( );
-   // Serial.println ("black");
+    // Serial.println ("black");
   } else {
     tft.fillScreen(ILI9341_WHITE);
     tft.updateScreen( );

@@ -5,32 +5,26 @@
 #include "frame.h"
 #include "screen.h"
 #include "tile.h"
-
-int tileChange = 0;
-Metro tiles = Metro(1000);
-
+#include "controls.h"
+#include "hero.h"
 
 void setup() {
-  // put your setup code here, to run once:
+
   Serial.begin(9600);
   initScreen();
-
-
+  initControls();
+  initHero();
 
 }
 
+
 void loop() {
-  // put your main code here, to run repeatedly:
 
-  checkFrame();
-  Serial.println(fps);
-
-  if (tiles.check()) {
-    tileChange = (tileChange + 1) % 8;
-  }
-
+  //checkFrame();
+  //Serial.println(fps);
   //screenTest(change);
-  drawLevel(tileChange);
-  tft.updateScreen();
+
+  getControls();
+  drawHero();
 
 }
