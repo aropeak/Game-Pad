@@ -27,12 +27,8 @@ void getControls() {
   //an array to set each button value to 1 when the button is pressed
   for (int i = 0; i < 4; i++) {
     buttons[i].update();
-    if (buttons[i].fell()) {
-      buttonBuffer[i] = 1;
-    }
-    if (buttons[i].rose()) {
-      buttonBuffer[i] = 0;
-    }
+    if (buttons[i].fell()) {buttonBuffer[i] = 1;}
+    if (buttons[i].rose()) {buttonBuffer[i] = 0;}
   }
 
   //an array to match the joystickBuffer to the reading of the joystick
@@ -41,26 +37,14 @@ void getControls() {
   }
 
   //sets the values of the buffer to 1 (down), 0 (neutral), or -1 (up)
-  if (joystickBuffer[0] > 525) {
-    joystickBuffer[0] = 1;
-  }
-  else if (joystickBuffer[0] < 475) {
-    joystickBuffer[0] = -1;
-  }
-  else {
-    joystickBuffer[0] = 0;
-  }
+  if (joystickBuffer[0] > 525) {joystickBuffer[0] = 1;}
+  else if (joystickBuffer[0] < 475) {joystickBuffer[0] = -1;}
+  else {joystickBuffer[0] = 0;}
 
   //sets the values of the buffer to 1 (right), 0 (neutral), or -1 (left)
-  if (joystickBuffer[1] > 515) {
-    joystickBuffer[1] = 1;
-  }
-  else if (joystickBuffer[1] < 475) {
-    joystickBuffer[1] = -1;
-  }
-  else {
-    joystickBuffer[1] = 0;
-  }
+  if (joystickBuffer[1] > 515) {joystickBuffer[1] = 1;}
+  else if (joystickBuffer[1] < 475) {joystickBuffer[1] = -1;}
+  else {joystickBuffer[1] = 0;}
 
   //  if (controlRate.check()) {
   //    Serial.print(buttonBuffer[0]);

@@ -2,11 +2,18 @@
 // Jeffrey Stephens || 29 March 2021
 // CRT 360 Advanced Prototyping || GamePad
 
+int curMode = -1;
+
 #include "frame.h"
 #include "screen.h"
 #include "tile.h"
 #include "controls.h"
+#include "interaction.h"
 #include "hero.h"
+#include "modes.h"
+
+
+Metro test = Metro(2000);
 
 void setup() {
 
@@ -14,17 +21,27 @@ void setup() {
   initScreen();
   initControls();
   initHero();
+  initNeighbors();
 
 }
 
 
 void loop() {
 
-  //checkFrame();
-  //Serial.println(fps);
-  //screenTest(change);
-
   getControls();
-  drawHero();
+  //drawHero();
+  runMode();
+  checkFrame();
+  tft.updateScreen();
 
+//  Serial.print(neighbors[88][0]);
+//  Serial.print("  |  ");
+//  Serial.print(neighbors[88][1]);
+//  Serial.print("  |  ");
+//  Serial.print(neighbors[88][2]);
+//  Serial.print("  |  ");
+//  Serial.print(neighbors[88][3]);
+//  Serial.print("  |  ");
+//  Serial.println(neighbors[88][4]);
+ 
 }
