@@ -46,17 +46,17 @@ void getControls() {
   else if (joystickBuffer[1] < 475) {joystickBuffer[1] = -1;}
   else {joystickBuffer[1] = 0;}
 
-  //  if (controlRate.check()) {
-  //    Serial.print(buttonBuffer[0]);
-  //    Serial.print("  |  ");
-  //    Serial.print(buttonBuffer[1]);
-  //    Serial.print("  |  ");
-  //    Serial.print(buttonBuffer[2]);
-  //    Serial.print("  |  ");
-  //    Serial.print(buttonBuffer[3]);
-  //    Serial.print("  |  ");
-  //    Serial.print(joystickBuffer[0]);
-  //    Serial.print("  |  ");
-  //    Serial.println(joystickBuffer[1]);
-  //  }
+//  if (controlRate.check()) {
+//    Serial.print(buttonBuffer[0]);
+//    Serial.print("  |  ");
+//    Serial.print(buttonBuffer[1]);
+//    Serial.print("  |  ");
+//    Serial.print(buttonBuffer[2]);
+//    Serial.print("  |  ");
+//    Serial.print(buttonBuffer[3]);
+//    Serial.print("  |  ");
+//    Serial.print(joystickBuffer[0]);
+//    Serial.print("  |  ");
+//    Serial.println(joystickBuffer[1]);
+//  }
 }

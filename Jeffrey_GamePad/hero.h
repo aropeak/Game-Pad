@@ -6,7 +6,7 @@ float heroX, heroY, heroSpeed;
 
 //booleans
 boolean isLevelDrawn, heroDir;
-int heroFrame, heroW, heroH;
+int heroFrame, heroW, heroH, curTileX, curTileY, curTile;
 
 //timer for animation speed
 Metro heroFrameTimer = Metro(250);
@@ -27,6 +27,10 @@ void drawHero() {
   //NextX and NextY are set to what what the player would move too
   float nextX = heroX + (float(joystickBuffer[1]) * heroSpeed);
   float nextY = heroY + (float(joystickBuffer[0]) * heroSpeed);
+
+  curTileX = heroX / tileSize;
+  curTileY = heroY / tileSize; 
+  curTile = curTileX + (curTileY * tileW);
 
   //if the player can move there, then the heros position will update
   if(checkMove(curMode, nextX, nextY, heroW, heroH)==true) {
@@ -59,8 +63,8 @@ void drawHero() {
   }
 
   //animate the hero to shield when button 1 is pressed
-  if (buttonBuffer[1] == 1 && heroDir == true) {heroFrame = 8;}
-  if (buttonBuffer[1] == 1 && heroDir == false) {heroFrame = 9;}
+  if (buttonBuffer[1] == 1 && heroDir == true && shieldBool == true) {heroFrame = 8;}
+  if (buttonBuffer[1] == 1 && heroDir == false && shieldBool == true) {heroFrame = 9;}
 
   //set a clip rectangle around the hero and update when he moves
   tft.setClipRect(heroX - 3, heroY - 3, heroW + 6, heroH + 6);

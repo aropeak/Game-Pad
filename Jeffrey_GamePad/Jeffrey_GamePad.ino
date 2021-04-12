@@ -8,6 +8,7 @@ int curMode = -1;
 #include "screen.h"
 #include "tile.h"
 #include "controls.h"
+#include "status.h"
 #include "interaction.h"
 #include "hero.h"
 #include "modes.h"
@@ -16,12 +17,14 @@ int curMode = -1;
 Metro test = Metro(2000);
 
 void setup() {
+    initLevel();
 
   Serial.begin(9600);
   initScreen();
   initControls();
   initHero();
   initNeighbors();
+  initStatus();
 
 }
 
@@ -31,17 +34,15 @@ void loop() {
   getControls();
   //drawHero();
   runMode();
-  checkFrame();
+ // checkFrame();
   tft.updateScreen();
 
-//  Serial.print(neighbors[88][0]);
+//  Serial.print(heroX);
 //  Serial.print("  |  ");
-//  Serial.print(neighbors[88][1]);
-//  Serial.print("  |  ");
-//  Serial.print(neighbors[88][2]);
-//  Serial.print("  |  ");
-//  Serial.print(neighbors[88][3]);
-//  Serial.print("  |  ");
-//  Serial.println(neighbors[88][4]);
- 
+//  Serial.println(heroY);
+
+  if(heroHealth == 0) {
+    curMode = 8;
+  }
+
 }
