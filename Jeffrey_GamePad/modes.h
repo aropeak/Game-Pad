@@ -65,9 +65,11 @@ void secondLevel() {
     updateShield();
     updateKey();
     updateHealth();
+    //heroSpeed = 0.6;
   }
   //draw the player
   drawLevel(1);
+  drawEnemy();
   drawHero();
 
   if(interaction[curMode][curTile] == 0x01 && buttons[2].rose()){curMode = 0; lvl2 = false; heroX = 150; heroY = 10;}
@@ -92,6 +94,7 @@ void thirdLevel() {
   }
   //draw the player
   drawLevel(2);
+  drawEnemy();
   drawHero();
 
   if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl3 = false; heroX = 150; heroY = 160;}
@@ -229,6 +232,8 @@ void youDied(){
     initHero();
     initNeighbors();
     initStatus();
+    initModes();
+    initEnemy();
   }
   Serial.println(curMode);
 }

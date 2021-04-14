@@ -4,6 +4,7 @@
 
 int curMode = -1;
 
+
 #include "frame.h"
 #include "screen.h"
 #include "tile.h"
@@ -11,6 +12,7 @@ int curMode = -1;
 #include "status.h"
 #include "interaction.h"
 #include "hero.h"
+#include "enemy.h"
 #include "modes.h"
 
 
@@ -20,12 +22,14 @@ void setup() {
     initLevel();
 
   Serial.begin(9600);
+  randomSeed(analogRead(A8));
   initScreen();
   initControls();
   initHero();
   initNeighbors();
   initStatus();
-
+  initModes();
+  initEnemy();
 }
 
 
@@ -34,7 +38,7 @@ void loop() {
   getControls();
   //drawHero();
   runMode();
- // checkFrame();
+  checkFrame();
   tft.updateScreen();
 
 //  Serial.print(heroX);

@@ -5,7 +5,7 @@ int fps = 0;
 
 //checks for the lcd frame rate
 void checkFrame() {
-  if (frameRate.check( )) {fps = 0;}
+  if (frameRate.check( )) {Serial.println(fps); fps = 0;}
   fps = fps + 1;
-  Serial.println(fps);
+  
 }
