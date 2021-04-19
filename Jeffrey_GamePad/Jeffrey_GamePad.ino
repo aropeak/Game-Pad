@@ -4,7 +4,6 @@
 
 int curMode = -1;
 
-
 #include "frame.h"
 #include "screen.h"
 #include "tile.h"
@@ -15,12 +14,10 @@ int curMode = -1;
 #include "enemy.h"
 #include "modes.h"
 
-
 Metro test = Metro(2000);
 
 void setup() {
-    initLevel();
-
+  initLevel();
   Serial.begin(9600);
   randomSeed(analogRead(A8));
   initScreen();
@@ -32,21 +29,12 @@ void setup() {
   initEnemy();
 }
 
-
 void loop() {
-
   getControls();
-  //drawHero();
   runMode();
   checkFrame();
   tft.updateScreen();
-
-//  Serial.print(heroX);
-//  Serial.print("  |  ");
-//  Serial.println(heroY);
-
   if(heroHealth == 0) {
     curMode = 8;
   }
-
 }

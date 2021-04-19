@@ -25,6 +25,7 @@ void introScreen() {
 
     heroX = screenW/2;
     heroY = screenH/2;
+    delay(1000);
   }
   //if button 2 has been pressed, then move to room 1
   if (buttonBuffer[2] == 1) {curMode = 0; initIntro = false;}
@@ -43,12 +44,12 @@ void firstLevel() {
     updateKey();
     updateHealth();
   }
-
+  
   //draw the player
   drawLevel(0);
   drawHero();
   
-  if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl1 = false; heroX = 150; heroY = 160;}
+  if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl1 = false; heroX = 150; heroY = 150;}
   if(interaction[curMode][curTile] == 0x09 && buttons[2].rose()){swordBool = true; chest1 = true; updateSword();}
 
 }
@@ -66,16 +67,16 @@ void secondLevel() {
     updateKey();
     updateHealth();
     //heroSpeed = 0.6;
+    updateEnemy(75,50);
   }
   //draw the player
   drawLevel(1);
-  drawEnemy();
+  if (enemyDraw==true) {drawEnemy();}
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x01 && buttons[2].rose()){curMode = 0; lvl2 = false; heroX = 150; heroY = 10;}
-  if(interaction[curMode][curTile] == 0x03 && buttons[2].rose()){curMode = 2; lvl2 = false; heroX = 290; heroY = 85;}
-  if(interaction[curMode][curTile] == 0x05 && buttons[2].rose()){curMode = 4; lvl2 = false; heroX = 10; heroY = 85;}
- 
+  if(interaction[curMode][curTile] == 0x01 && buttons[2].rose()){curMode = 0; lvl2 = false; heroX = 150; heroY = 25;}
+  if(interaction[curMode][curTile] == 0x03 && buttons[2].rose()){curMode = 2; lvl2 = false; heroX = 275; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x05 && buttons[2].rose()){curMode = 4; lvl2 = false; heroX = 25; heroY = 85;}
 }
 //draws the third room
 void thirdLevel() {
@@ -91,14 +92,15 @@ void thirdLevel() {
     updateHealth();
     updateKey();
     updateHealth1();
+    updateEnemy(25,25);
   }
   //draw the player
   drawLevel(2);
-  drawEnemy();
+  if (enemyDraw==true) {drawEnemy();}
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl3 = false; heroX = 150; heroY = 160;}
-  if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl3 = false; heroX = 10; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl3 = false; heroX = 150; heroY = 150;}
+  if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl3 = false; heroX = 25; heroY = 85;}
   if(interaction[curMode][curTile] == 0x0A){heroHealth = 0;}
   if(interaction[curMode][curTile] == 0x09 && buttons[2].rose()){healthBool1 = true; chest4 = true; updateHealth1(); updateHealth();}
 }
@@ -120,8 +122,8 @@ void fourthLevel() {
   drawLevel(3);
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x03 && buttons[2].rose()){curMode = 2; lvl4 = false; heroX = 150; heroY = 10;}
-  if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl4 = false; heroX = 10; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x03 && buttons[2].rose()){curMode = 2; lvl4 = false; heroX = 150; heroY = 30;}
+  if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl4 = false; heroX = 25; heroY = 85;}
   if(interaction[curMode][curTile] == 0x0A){heroHealth = 0;}
   if(interaction[curMode][curTile] == 0x09 && buttons[2].rose()){keyBool = true; chest5 = true; updateKey();}
 }
@@ -138,13 +140,15 @@ void fifthLevel() {
     updateShield();
     updateKey();
     updateHealth();
+    updateEnemy(250,140);
   }
   //draw the player
   drawLevel(4);
+  if (enemyDraw==true) {drawEnemy();}
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl5 = false; heroX = 290; heroY = 85;}
-  if(interaction[curMode][curTile] == 0x06 && buttons[2].rose()){curMode = 5; lvl5 = false; heroX = 150; heroY = 160;}
+  if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl5 = false; heroX = 275; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x06 && buttons[2].rose()){curMode = 5; lvl5 = false; heroX = 150; heroY = 150;}
   if(interaction[curMode][curTile] == 0x0A){heroHealth = 0;}
   if(interaction[curMode][curTile] == 0x09 && buttons[2].rose()){shieldBool = true; chest2 = true; updateShield();}
   
@@ -163,13 +167,15 @@ void sixthLevel() {
     updateKey();
     updateHealth();
     updateHealth1();
+    updateEnemy(75,50);
   }
   //draw the player
   drawLevel(5);
+  if (enemyDraw==true) {drawEnemy();}
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x05 && buttons[2].rose()){curMode = 4; lvl6 = false; heroX = 150; heroY = 10;}
-  if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl6 = false; heroX = 290; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x05 && buttons[2].rose()){curMode = 4; lvl6 = false; heroX = 150; heroY = 25;}
+  if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl6 = false; heroX = 275; heroY = 85;}
   if(interaction[curMode][curTile] == 0x0A){heroHealth = 0;}
   if(interaction[curMode][curTile] == 0x09 && buttons[2].rose()){healthBool1 = true; chest3 = true; updateHealth1(); updateHealth();}
 }
@@ -186,14 +192,16 @@ void seventhLevel() {
     updateShield();
     updateKey();
     updateHealth();
+    updateEnemy(screenW/2,screenH/2);
   }
   //draw the player
   drawLevel(6);
+  if (enemyDraw==true) {drawEnemy();}
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl7 = false; heroX = 290; heroY = 85;}
-  if(interaction[curMode][curTile] == 0x06 && buttons[2].rose()){curMode = 5; lvl7 = false; heroX = 10; heroY = 85;}
-  if(interaction[curMode][curTile] == 0x08 && buttons[2].rose()){curMode = 7; lvl7 = false; heroX = 150; heroY = 160;}
+  if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl7 = false; heroX = 275; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x06 && buttons[2].rose()){curMode = 5; lvl7 = false; heroX = 25; heroY = 85;}
+  if(interaction[curMode][curTile] == 0x08 && buttons[2].rose() && keyBool==true){curMode = 7; lvl7 = false; heroX = 150; heroY = 150;}
 
 }
 //draws the boss room
@@ -214,7 +222,7 @@ void eigthLevel() {
   drawLevel(7);
   drawHero();
 
-  if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl8 = false; heroX = 150; heroY = 10;}
+  //if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl8 = false; heroX = 150; heroY = 25;}
   if(interaction[curMode][curTile] == 0x0A){heroHealth = 0;}
 }
 
@@ -235,7 +243,6 @@ void youDied(){
     initModes();
     initEnemy();
   }
-  Serial.println(curMode);
 }
 //cases to setup each level
 void runMode() {

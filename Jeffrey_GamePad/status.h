@@ -168,5 +168,5 @@ void initStatus() {
   shieldBool = false;
   healthBool1 = false;
   heroHealth = 3;
-
+  keyBool = false;
 }
