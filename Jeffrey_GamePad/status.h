@@ -1,7 +1,7 @@
 #include "headsUp_MASK.h"
 #include "headsUp_PIX.h"
 
-int heroHealth = 3;
+int heroHealth = 5;
 
 bool swordBool, shieldBool, healthBool1, keyBool;
 bool chest1, chest2, chest3, chest4, chest5;
@@ -98,6 +98,18 @@ void updateHealth() {
     tft.setClipRect(280, 200, 20, 20);
     tft.drawRGBBitmap(280, 200, Game_Pad_PIX[0x17], 20, 20);
     tft.updateScreen();
+    tft.setClipRect(260, 200, 20, 20);
+    tft.drawRGBBitmap(260, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(240, 200, 20, 20);
+    tft.drawRGBBitmap(240, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(220, 200, 20, 20);
+    tft.drawRGBBitmap(220, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(200, 200, 20, 20);
+    tft.drawRGBBitmap(200, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
     Serial.println("HEALTH");
   }
   if (heroHealth == 3) {
@@ -106,6 +118,15 @@ void updateHealth() {
     tft.updateScreen();
     tft.setClipRect(260, 200, 20, 20);
     tft.drawRGBBitmap(260, 200, Game_Pad_PIX[0x17], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(240, 200, 20, 20);
+    tft.drawRGBBitmap(240, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(220, 200, 20, 20);
+    tft.drawRGBBitmap(220, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(200, 200, 20, 20);
+    tft.drawRGBBitmap(200, 200, Game_Pad_PIX[0x18], 20, 20);
     tft.updateScreen();
     Serial.println("HEALTH");
   }
@@ -118,6 +139,12 @@ void updateHealth() {
     tft.updateScreen();
     tft.setClipRect(240, 200, 20, 20);
     tft.drawRGBBitmap(240, 200, Game_Pad_PIX[0x17], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(220, 200, 20, 20);
+    tft.drawRGBBitmap(220, 200, Game_Pad_PIX[0x18], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(200, 200, 20, 20);
+    tft.drawRGBBitmap(200, 200, Game_Pad_PIX[0x18], 20, 20);
     tft.updateScreen();
     Serial.println("HEALTH");
   }
@@ -133,6 +160,9 @@ void updateHealth() {
     tft.updateScreen();
     tft.setClipRect(220, 200, 20, 20);
     tft.drawRGBBitmap(220, 200, Game_Pad_PIX[0x17], 20, 20);
+    tft.updateScreen();
+    tft.setClipRect(200, 200, 20, 20);
+    tft.drawRGBBitmap(200, 200, Game_Pad_PIX[0x18], 20, 20);
     tft.updateScreen();
     Serial.println("HEALTH");
   }
@@ -158,7 +188,6 @@ void updateHealth() {
 
 
 void initStatus() {
-
   updateHead(0);
   chest1 = false;
   chest2 = false;
@@ -167,6 +196,6 @@ void initStatus() {
   swordBool = false;
   shieldBool = false;
   healthBool1 = false;
-  heroHealth = 3;
+  heroHealth = 5;
   keyBool = false;
 }

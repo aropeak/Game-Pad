@@ -2,7 +2,7 @@
 // Jeffrey Stephens || 29 March 2021
 // CRT 360 Advanced Prototyping || GamePad
 
-int curMode = -1;
+int curMode = -2;
 
 #include "frame.h"
 #include "screen.h"
@@ -12,6 +12,8 @@ int curMode = -1;
 #include "interaction.h"
 #include "hero.h"
 #include "enemy.h"
+#include "nobert.h"
+#include "fight.h"
 #include "modes.h"
 
 Metro test = Metro(2000);
@@ -27,12 +29,13 @@ void setup() {
   initStatus();
   initModes();
   initEnemy();
+  initNorbert();
 }
 
 void loop() {
   getControls();
   runMode();
-  checkFrame();
+  //checkFrame();
   tft.updateScreen();
   if(heroHealth == 0) {
     curMode = 8;

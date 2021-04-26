@@ -55,7 +55,9 @@ void drawEnemy() {
     enemyFrame = 0;
   }
 
-  tft.setClipRect(enemyX-enemyMargin, enemyY-enemyMargin, enemyW+enemyMargin, enemyY+enemyMargin);
+  if(enemyHealth == 0) {enemyDraw = false;}
+
+  tft.setClipRect(enemyX-enemyMargin, enemyY-enemyMargin, enemyW+enemyMargin, enemyH+10);
   drawLevel(curMode);
   tft.drawRGBBitmap(enemyX, enemyY, Game_Pad_Enemy_PIX[enemyFrame], Game_Pad_Enemy_MASK[enemyFrame], enemyW, enemyH);
   tft.updateScreen();
@@ -65,4 +67,5 @@ void updateEnemy(int x, int y) {
   enemyX = x;
   enemyY = y;
   enemyDraw = true;
+  enemyHealth = 1;
 }

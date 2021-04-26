@@ -3,15 +3,19 @@
 
 //sets global variables
 int initIntro, initDied;
+boolean initControls2, initWin;
 boolean lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8;
 
 //initializes global variables
 void initModes() {
   initIntro = false;
+  initControls2 = false;
   initDied = false;
   lvl1 = false; lvl2 = false; lvl3 = false; lvl4 = false;
   lvl5 = false; lvl6 = false; lvl7 = false; lvl8 = false;
 }
+
+
 
 //draws title screen
 void introScreen() {
@@ -28,8 +32,21 @@ void introScreen() {
     delay(1000);
   }
   //if button 2 has been pressed, then move to room 1
-  if (buttonBuffer[2] == 1) {curMode = 0; initIntro = false;}
+  if (buttonBuffer[2] == 1) {curMode = -1; initIntro = false;}
 }
+
+void controls() {
+  if (initControls2 == false) {
+    tft.setClipRect(0, 0, screenW, screenH);
+    tft.drawRGBBitmap(0, 0, introGraphic_PIX[1], 320, 240);
+    tft.updateScreen();
+    initControls2 = true;
+    delay(6000);
+  }
+  if (buttonBuffer[2] == 1) {curMode = 0; initControls2 = false;}
+}
+
+
 //draws the first room
 void firstLevel() {
   //if screen hasnt been drawn, draw screen
@@ -44,6 +61,8 @@ void firstLevel() {
     updateKey();
     updateHealth();
   }
+
+  heroSpeed = 0.6; if(enemyDraw==false){heroSpeed = 0.3;}
   
   //draw the player
   drawLevel(0);
@@ -71,8 +90,11 @@ void secondLevel() {
   }
   //draw the player
   drawLevel(1);
-  if (enemyDraw==true) {drawEnemy();}
+  if (enemyDraw==true) {drawEnemy(); fight();}
+  heroSpeed = 0.8; if(enemyDraw==false){heroSpeed = 0.4;}
   drawHero();
+  tft.setClipRect(heroX-20, heroY-22, heroW+36, heroH+36);
+  tft.updateScreen();
 
   if(interaction[curMode][curTile] == 0x01 && buttons[2].rose()){curMode = 0; lvl2 = false; heroX = 150; heroY = 25;}
   if(interaction[curMode][curTile] == 0x03 && buttons[2].rose()){curMode = 2; lvl2 = false; heroX = 275; heroY = 85;}
@@ -96,8 +118,11 @@ void thirdLevel() {
   }
   //draw the player
   drawLevel(2);
-  if (enemyDraw==true) {drawEnemy();}
+  if (enemyDraw==true) {drawEnemy(); fight();}
   drawHero();
+  heroSpeed = 0.8; if(enemyDraw==false){heroSpeed = 0.4;}
+  tft.setClipRect(heroX-20, heroY-22, heroW+36, heroH+36);
+  tft.updateScreen();
 
   if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl3 = false; heroX = 150; heroY = 150;}
   if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl3 = false; heroX = 25; heroY = 85;}
@@ -144,8 +169,11 @@ void fifthLevel() {
   }
   //draw the player
   drawLevel(4);
-  if (enemyDraw==true) {drawEnemy();}
-  drawHero();
+  if (enemyDraw==true) {drawEnemy(); fight();}
+  drawHero(); 
+  heroSpeed = 0.8; if(enemyDraw==false){heroSpeed = 0.4;}
+  tft.setClipRect(heroX-20, heroY-22, heroW+36, heroH+36);
+  tft.updateScreen();
 
   if(interaction[curMode][curTile] == 0x02 && buttons[2].rose()){curMode = 1; lvl5 = false; heroX = 275; heroY = 85;}
   if(interaction[curMode][curTile] == 0x06 && buttons[2].rose()){curMode = 5; lvl5 = false; heroX = 150; heroY = 150;}
@@ -171,8 +199,11 @@ void sixthLevel() {
   }
   //draw the player
   drawLevel(5);
-  if (enemyDraw==true) {drawEnemy();}
+  if (enemyDraw==true) {drawEnemy(); fight();}
   drawHero();
+   heroSpeed = 0.8; if(enemyDraw==false){heroSpeed = 0.4;}
+  tft.setClipRect(heroX-20, heroY-22, heroW+36, heroH+36);
+  tft.updateScreen();
 
   if(interaction[curMode][curTile] == 0x05 && buttons[2].rose()){curMode = 4; lvl6 = false; heroX = 150; heroY = 25;}
   if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl6 = false; heroX = 275; heroY = 85;}
@@ -196,12 +227,15 @@ void seventhLevel() {
   }
   //draw the player
   drawLevel(6);
-  if (enemyDraw==true) {drawEnemy();}
+  if (enemyDraw==true) {drawEnemy(); fight();}
   drawHero();
+   heroSpeed = 0.8; if(enemyDraw==false){heroSpeed = 0.4;}
+    tft.setClipRect(heroX-20, heroY-22, heroW+36, heroH+36);
+  tft.updateScreen();
 
   if(interaction[curMode][curTile] == 0x04 && buttons[2].rose()){curMode = 3; lvl7 = false; heroX = 275; heroY = 85;}
   if(interaction[curMode][curTile] == 0x06 && buttons[2].rose()){curMode = 5; lvl7 = false; heroX = 25; heroY = 85;}
-  if(interaction[curMode][curTile] == 0x08 && buttons[2].rose() && keyBool==true){curMode = 7; lvl7 = false; heroX = 150; heroY = 150;}
+  if(interaction[curMode][curTile] == 0x08 && buttons[2].rose()){curMode = 7; lvl7 = false; heroX = 150; heroY = 150;}
 
 }
 //draws the boss room
@@ -220,7 +254,10 @@ void eigthLevel() {
   }
   //draw the player
   drawLevel(7);
+  drawNorbert();
+  fight();
   drawHero();
+  if(norbHealth==0) {curMode=9;}
 
   //if(interaction[curMode][curTile] == 0x07 && buttons[2].rose()){curMode = 6; lvl8 = false; heroX = 150; heroY = 25;}
   if(interaction[curMode][curTile] == 0x0A){heroHealth = 0;}
@@ -230,11 +267,11 @@ void youDied(){
   //if screen hasnt been drawn, draw screen
   if (initDied == false) {
     tft.setClipRect(0, 0, screenW, screenH);
-    tft.drawRGBBitmap(0, 0, introGraphic_PIX[1], 320, 240);
+    tft.drawRGBBitmap(0, 0, introGraphic_PIX[3], 320, 240);
     tft.updateScreen();
     initIntro = true;
   }
-  if(buttons[2].rose()) {curMode = -1; initDied = false;   
+  if(buttons[2].rose()) {curMode = -2; initDied = false;   
     initScreen();
     initControls();
     initHero();
@@ -242,12 +279,34 @@ void youDied(){
     initStatus();
     initModes();
     initEnemy();
+    heroSpeed = .4;
+  }
+}
+
+void youWin(){
+  //if screen hasnt been drawn, draw screen
+  if (initWin == false) {
+    tft.setClipRect(0, 0, screenW, screenH);
+    tft.drawRGBBitmap(0, 0, introGraphic_PIX[2], 320, 240);
+    tft.updateScreen();
+    initIntro = true;
+  }
+  if(buttons[2].rose()) {curMode = -2; initWin = false;   
+    initScreen();
+    initControls();
+    initHero();
+    initNeighbors();
+    initStatus();
+    initModes();
+    initEnemy();
+    heroSpeed = .4;
   }
 }
 //cases to setup each level
 void runMode() {
   switch (curMode) {
-    case -1: introScreen(); break;
+    case -2: introScreen(); break;
+    case -1: controls(); break;
     case 0: firstLevel(); break;
     case 1: secondLevel(); break;
     case 2: thirdLevel(); break;
@@ -257,5 +316,6 @@ void runMode() {
     case 6: seventhLevel(); break;
     case 7: eigthLevel(); break;
     case 8: youDied(); break;
+    case 9: youWin(); break;
   }
 }
